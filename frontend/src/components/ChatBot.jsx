@@ -82,7 +82,8 @@ export default function ChatBot() {
         ...prev,
         {
           sender: "bot",
-          text: "⚠️ Unable to connect to Absolute Foundation server."
+          text:
+            "⚠️ Unable to connect to Absolute Foundation server."
         }
       ]);
     }
@@ -186,122 +187,114 @@ You can click a menu option or ask a question directly.`
   };
 
   return (
-    <div className="container">
+    <div className="app-wrapper">
 
-      <div className="header">
-        <h1>Absolute Foundation AI</h1>
-        <p>Your Academic Counselor</p>
-      </div>
+      <div className="container">
 
-      {userName && (
-        <div className="menu-grid">
+        <div className="header">
+          <h1>Absolute Foundation AI</h1>
+          <p>Your Academic Counselor</p>
+        </div>
 
-          <button
-            onClick={() =>
+        {userName && (
+          <div className="menu-grid">
+
+            <button onClick={() =>
               handleQuickQuestion(
                 "What courses are available?"
               )
-            }
-          >
-            📚 Courses
-          </button>
+            }>
+              📚 Courses
+            </button>
 
-          <button
-            onClick={() =>
+            <button onClick={() =>
               handleQuickQuestion(
                 "What is OATH Scholarship?"
               )
-            }
-          >
-            🏆 OATH
-          </button>
+            }>
+              🏆 OATH
+            </button>
 
-          <button
-            onClick={() =>
+            <button onClick={() =>
               handleQuickQuestion(
                 "Where are the branches located?"
               )
-            }
-          >
-            🏫 Branches
-          </button>
+            }>
+              🏫 Branches
+            </button>
 
-          <button
-            onClick={() =>
+            <button onClick={() =>
               handleQuickQuestion(
                 "How can I get admission?"
               )
-            }
-          >
-            📝 Admissions
-          </button>
+            }>
+              📝 Admissions
+            </button>
 
-          <button
-            onClick={() =>
+            <button onClick={() =>
               handleQuickQuestion(
                 "Career opportunities"
               )
-            }
-          >
-            💼 Careers
-          </button>
+            }>
+              💼 Careers
+            </button>
 
-          <button
-            onClick={() =>
+            <button onClick={() =>
               handleQuickQuestion(
                 "Frequently Asked Questions"
               )
-            }
-          >
-            ❓ FAQ
-          </button>
+            }>
+              ❓ FAQ
+            </button>
 
-        </div>
-      )}
-
-      <div className="chat-area">
-
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={
-              msg.sender === "user"
-                ? "user-msg"
-                : "bot-msg"
-            }
-          >
-            {msg.text}
-          </div>
-        ))}
-
-        {loading && (
-          <div className="typing">
-            <span></span>
-            <span></span>
-            <span></span>
           </div>
         )}
 
-        <div ref={bottomRef}></div>
+        <div className="chat-area">
 
-      </div>
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={
+                msg.sender === "user"
+                  ? "user-msg"
+                  : "bot-msg"
+              }
+            >
+              {msg.text}
+            </div>
+          ))}
 
-      <div className="input-area">
+          {loading && (
+            <div className="typing">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          )}
 
-        <input
-          value={message}
-          placeholder="Ask about courses, admissions, scholarships..."
-          onChange={(e) =>
-            setMessage(e.target.value)
-          }
-          onKeyDown={(e) =>
-            e.key === "Enter" && sendMessage()
-          }
-        />
+          <div ref={bottomRef}></div>
 
-        <button onClick={sendMessage}>
-          Send
-        </button>
+        </div>
+
+        <div className="input-area">
+
+          <input
+            value={message}
+            placeholder="Ask about courses, admissions, scholarships..."
+            onChange={(e) =>
+              setMessage(e.target.value)
+            }
+            onKeyDown={(e) =>
+              e.key === "Enter" && sendMessage()
+            }
+          />
+
+          <button onClick={sendMessage}>
+            Send
+          </button>
+
+        </div>
 
       </div>
 
